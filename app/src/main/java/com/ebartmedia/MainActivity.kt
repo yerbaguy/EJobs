@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import com.ebartmedia.Adapter.RecyclerViewAdapter
+import com.ebartmedia.Model.Categories
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -24,7 +25,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   //  var categories: MutableList<Categories> = ArrayList<Categories>()
 
-    val categories: ArrayList<String> = ArrayList()
+  //  val categories: ArrayList<String> = ArrayList()
+    val categories: ArrayList<Categories> = ArrayList<Categories>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,15 +128,46 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun addCategories() {
 
-        categories.add("lajsdf")
-        categories.add("lkajsdf")
-        categories.add("lajsdf")
-        categories.add("lkajsdf")
-        categories.add("lajsdf")
-        categories.add("lkajsdf")
-        categories.add("lajsdf")
-        categories.add("lkajsdf")
-        categories.add("lajsdf")
-        categories.add("lkajsdf")
+        categories.clear()
+        categories.addAll(listOf(Categories(1,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(2,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(3,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(4,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(5,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(6,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(7,"lkjasdflkj")))
+        categories.addAll(listOf(Categories(8,"lkjasdflkj")))
+
+
+
+
+
+//        var cat = Categories()
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+//        cat.categoryName = "lkajsdf"
+
+
+       // categories.addAll(listOf(cat))
+
+
+
+
+
+//        categories.add("ljksdf")
+//        categories.add("lkajsdf")
+//        categories.add("lajsdf")
+//        categories.add("lkajsdf")
+//        categories.add("lajsdf")
+//        categories.add("lkajsdf")
+//        categories.add("lajsdf")
+//        categories.add("lkajsdf")
+//        categories.add("lajsdf")
+//        categories.add("lkajsdf")
     }
 }

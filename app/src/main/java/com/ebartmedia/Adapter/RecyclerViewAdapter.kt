@@ -5,12 +5,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.ebartmedia.Model.Categories
 import com.ebartmedia.R
 import kotlinx.android.synthetic.main.categories_item.view.*
 
 //class RecyclerViewAdapter(internal var context: Context, internal var categories: ArrayList<Categories>): RecyclerView.Adapter<RecyclerViewAdapter.CategoriesViewHolder>() {
-class RecyclerViewAdapter(internal var context: Context, internal var items: ArrayList<String>): RecyclerView.Adapter<com.ebartmedia.Adapter.RecyclerViewAdapter.CategoriesViewHolder>() {
+//class RecyclerViewAdapter(internal var context: Context, internal var items: ArrayList<String>): RecyclerView.Adapter<com.ebartmedia.Adapter.RecyclerViewAdapter.CategoriesViewHolder>() {//here
 
+class RecyclerViewAdapter(internal var context: Context, internal var items: ArrayList<Categories>): RecyclerView.Adapter<com.ebartmedia.Adapter.RecyclerViewAdapter.CategoriesViewHolder>() {
 
 
 
@@ -32,7 +35,9 @@ class RecyclerViewAdapter(internal var context: Context, internal var items: Arr
 
        // holder.txt_cat_name.text = items[position].categoryName
 
-        holder.txt_cat_name.text = items.get(position).toString()
+       // holder.txt_cat_name.text = items.get(position).toString() //here
+
+        holder.bindItems(items[position])
 
 
     }
@@ -49,7 +54,14 @@ class RecyclerViewAdapter(internal var context: Context, internal var items: Arr
 //        }
 
 
-        val txt_cat_name = itemView.txt_category_name
+//        val txt_cat_name = itemView.txt_category_name //here
+
+        fun bindItems(categories: Categories) {
+
+            val txt_cat_name = itemView.findViewById<TextView>(R.id.txt_category_name)
+
+            txt_cat_name.text = categories.categoryName
+        }
 
     }
 
