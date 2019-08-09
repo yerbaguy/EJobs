@@ -11,14 +11,22 @@ import android.support.design.widget.NavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import com.ebartmedia.Adapter.RecyclerViewAdapter
 import com.ebartmedia.Model.Categories
+import com.ebartmedia.Retrofit.IMyAPI
+import com.ebartmedia.Retrofit.RetrofitClient
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+
+    internal lateinit var jsonApi:IMyAPI
+    internal lateinit var compositeDisposable: CompositeDisposable
 
   //  var adapter:RecyclerViewAdapter?=null
   //  val compositeDisposable:CompositeDisposable?=null
@@ -34,6 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
 
 
 
@@ -54,8 +63,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navView.setNavigationItemSelectedListener(this)
 
+        compositeDisposable = CompositeDisposable()
 
-        addCategories()
+        val retrofit = RetrofitClient.instance
+        jsonApi = retrofit.create(IMyAPI::class.java)
+
+        fetchData()
+
+       // addCategories()
 
         recycler_categories.setHasFixedSize(true)
         recycler_categories.layoutManager = LinearLayoutManager(this)
@@ -125,6 +140,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    private fun fetchData() {
+
+        compositeDisposable.add(jsonApi.categories
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+                    categories -> displayData( categories )
+
+
+                Log.d("fetchData","fetchData" + categories)
+            }))
+    }
+
+    private fun displayData( cat: List<Categories>) {
+
+
+        recycler_categories.adapter = RecyclerViewAdapter(this, categories)
+
+        val catt = ArrayList(cat)
+
+
+
+
+        Log.d("displayData", "DisplayData" + catt)
+
+        categories.clear()
+        categories.addAll(catt)
+
+       // categories.addAll(listOf(Categories()))
+
+
+    }
+
 
     private fun addCategories() {
 

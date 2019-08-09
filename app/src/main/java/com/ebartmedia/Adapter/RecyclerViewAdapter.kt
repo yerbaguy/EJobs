@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.ebartmedia.MainActivity
 import com.ebartmedia.Model.Categories
 import com.ebartmedia.R
-import kotlinx.android.synthetic.main.categories_item.view.*
 
 //class RecyclerViewAdapter(internal var context: Context, internal var categories: ArrayList<Categories>): RecyclerView.Adapter<RecyclerViewAdapter.CategoriesViewHolder>() {
 //class RecyclerViewAdapter(internal var context: Context, internal var items: ArrayList<String>): RecyclerView.Adapter<com.ebartmedia.Adapter.RecyclerViewAdapter.CategoriesViewHolder>() {//here
